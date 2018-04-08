@@ -1,0 +1,25 @@
+
+
+
+
+
+
+2 loader in real.I am kernel
+init_all
+idt_init start
+  idt_desc_init done
+ pic_init done
+idt_init done
+timer_init start
+timer_init done
+mem_init start
+2000000 mem_pool_init start
+   kernel_pool_bitmap_start:C009A000   kernel_pool_phy_addr_start:200000
+user_pool_bitmap_start:C009A1E0user_pool_phy_addr_start:1100000
+   mem_pool_init done
+mem_init done
+thread_init start
+thread_init done
+keyboard init start
+keyboard init done
+ß
