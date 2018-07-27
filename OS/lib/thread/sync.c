@@ -14,6 +14,8 @@ void lock_init(struct lock* plock, uint8_t value) {
 
 void sema_down(struct semaphore *psema) {
 	enum intr_status old_status  = intr_disable();
+	//put_int((uint32_t)&psema->waiters);
+	//put_str("\n");
 	while (psema->value == 0) {
 		if (!elem_find(&psema->waiters, &(running_thread()->general_tag))) {
 			list_append(&psema->waiters, &(running_thread()->general_tag));
@@ -48,6 +50,17 @@ void lock_acquire(struct lock* plock) {
 	}
 }
 
+void lock_acquire_test(struct lock* plock) {
+	if (plock->holder != running_thread()) {
+		sema_down(&plock->semaphore);
+		//ASSERT(1 == 2);
+		plock->holder = running_thread();
+		ASSERT(plock->holder_repeat_nr == 0);
+		plock->holder_repeat_nr = 1;
+	} else {
+		plock->holder_repeat_nr++;
+	}
+}
 void lock_release(struct lock* plock) {
 	ASSERT(plock->holder == running_thread());
 	if (plock->holder != running_thread()) return;
@@ -60,5 +73,4 @@ void lock_release(struct lock* plock) {
 	plock->holder_repeat_nr = 0;
 	sema_up(&plock->semaphore); //信号量的V操作 
 }
-
 

@@ -80,6 +80,8 @@ static char keymap[][2] = {
 	{caps_lock_char, caps_lock_char}
 };
 
+extern struct ioqueue kbd_buf;
+
 static void intr_keyboard_handler();
 void keyboard_init();
 #endif

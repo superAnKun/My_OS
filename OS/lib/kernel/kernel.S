@@ -4,7 +4,7 @@
 
 extern put_str
 extern idt_table
-
+;extern test_func
 
 
 section .data
@@ -40,6 +40,7 @@ intr%1entry:
  dd intr%1entry
 
  %endmacro
+
 
 section .text
 global intr_exit
@@ -103,3 +104,33 @@ iretd
  VECTOR 0x2d, ZERO   ;浮点异常
  VECTOR 0x2e, ZERO   ;硬盘
  VECTOR 0x2f, ZERO
+
+
+;----------------------------------------------------------
+;系统调用 处理函数
+ [bits 32]
+ extern syscall_table
+ extern test_func
+ global syscall_handler
+ section .text
+;global syscall_handler
+ syscall_handler:
+ push 0
+
+ push ds
+ push es
+ push fs
+ push gs
+ pushad
+
+ push 0x80
+ 
+ push edx
+ push ecx
+ push ebx
+ 
+ call [syscall_table + eax*4]
+ add esp, 12
+ mov [esp + 8 * 4], eax   ;将系统调用的返回值存入eax中
+ jmp intr_exit
+;-----------------------------------------------------------------

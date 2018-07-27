@@ -3,7 +3,7 @@
 #include "../kernel/interrupt.h"
 #include "../kernel/io.h"
 #include "../kernel/global.h"
-
+#include "ioqueue.h"
 #define KBD_BUF_PORT 0x60  //键盘buffer寄存器端口号 0x60
 
 //定义控制字符的断码和通码  用来判断读入的扫描码是否是控制字符
@@ -16,6 +16,8 @@
 #define ctrl_r_make    0xe01d
 #define ctrl_r_break   0xe09d
 #define caps_lock_make 0x3a
+
+struct ioqueue kbd_buf;
 
 static bool ctrl_status, shift_status, alt_status, caps_lock_status, ext_scancode;
 
@@ -72,8 +74,11 @@ static void intr_keyboard_handler() {
 
 	    uint8_t index = (scancode &= 0x00ff);
 	    char cur_char = keymap[index][shift];
-	    if (cur_char) {
-		    put_char(cur_char);
+		if ((ctrl_down_last && cur_char == 'l') || (ctrl_down_last && cur_char == 'u')) cur_char -= 'a';
+
+	    if (cur_char && !ioq_full(&kbd_buf)) {
+	//		 put_char(cur_char);
+			 ioq_putchar(&kbd_buf, cur_char);
 		    return;
 	    }
 
@@ -98,6 +103,7 @@ static void intr_keyboard_handler() {
 
 void keyboard_init() {
 	put_str("keyboard init start\n");
+	ioqueue_init(&kbd_buf);
 	register_handler(0x21, intr_keyboard_handler);
 	put_str("keyboard init done\n");
 }

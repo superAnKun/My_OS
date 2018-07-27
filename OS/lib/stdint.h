@@ -12,4 +12,5 @@ typedef unsigned long long int uint64_t;
 #define true 1
 #define false 0
 typedef uint8_t bool;
+typedef char* va_list;
 #endif

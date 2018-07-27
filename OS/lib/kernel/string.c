@@ -2,7 +2,7 @@
 #include "global.h"
 #include "debug.h"
 #include "../stdint.h"
-
+//#define NDEBUG
 void memset(void* dst_, uint8_t value, uint32_t size)
 {
 	ASSERT(dst_ != 0);
@@ -12,7 +12,7 @@ void memset(void* dst_, uint8_t value, uint32_t size)
 }
 
 
-void memecpy(void* dst_, void* src_, uint32_t size)
+void memcpy(void* dst_, void* src_, uint32_t size)
 {
 	ASSERT(dst_ != 0  && src_ != 0);
 	uint8_t* dst = dst_;
@@ -87,18 +87,20 @@ char* strrchr(const char* str, const char ch)
 	return (char*)last_char;
 }
 
+//字符串拼接
 char* strcat(char* dst_, const char* src_)
 {
 	ASSERT(dst_ != 0 && src_ != 0);
 	char* dst = dst_;
 	char* src = (char*)src_;
 	while (*dst) dst++;
-	dst--;
+	//dst--;
 	while (*src)
 	{
 		*dst = *src;
 		dst++, src++;
 	}
+	*dst = 0;
 return dst_;
 }
 

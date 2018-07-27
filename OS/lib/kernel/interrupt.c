@@ -4,7 +4,7 @@
 #include "io.h"
 #include "print.h"
 
-#define IDT_DESC_CNT 0x30     //总共的中断数量
+#define IDT_DESC_CNT 0x81     //总共的中断数量
 #define PIC_M_CTRL 0x20        //8259A主片的控制端口是0x20
 #define PIC_M_DATA 0x21        //8259A主片的数据端口是0x21
 #define PIC_S_CTRL 0xa0        //8259A从片的控制端口
@@ -33,7 +33,7 @@ static void make_idt_desc(struct gate_desc* p_gdesc, uint8_t attr, intr_handler 
 
 
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
-
+extern uint32_t syscall_handler();    //80号中断处理程序， 由汇编实现 属于软中断
 
 char* intr_name[IDT_DESC_CNT];
 intr_handler idt_table[IDT_DESC_CNT];
@@ -49,15 +49,22 @@ static void make_idt_desc(struct gate_desc* p_gdesc, uint8_t attr, intr_handler 
     p_gdesc->func_offset_high_word = ((uint32_t)function & 0xffff0000) >> 16;
 }
 
+
+void test() {
+	put_str("I'm here\n");
+	while(1);
+}
+
 //初始化中断描述符表
-static void idt_desc_init(void)
+static void idt_desc_init()
 {
-    int i;
+	int i, lastindex = IDT_DESC_CNT - 1;
     for (i = 0; i < IDT_DESC_CNT; i++)
     {
         make_idt_desc(&idt[i], IDT_DESC_ATTR_DPL0, intr_entry_table[i]);
     }
-
+	make_idt_desc(&idt[lastindex], IDT_DESC_ATTR_DPL3, syscall_handler);
+	//make_idt_desc(&idt[lastindex], IDT_DESC_ATTR_DPL3, test);
     put_str("  idt_desc_init done\n");
 }
 
@@ -153,11 +160,13 @@ static void pic_init(void)
     outb(PIC_S_DATA, 0x02);
     outb(PIC_S_DATA, 0x01);
 
+	outb(PIC_M_DATA, 0xf8);
+	outb(PIC_S_DATA, 0xbf);
  //   outb(PIC_M_DATA, 0xfe);
  //   outb(PIC_S_DATA, 0xff);
 
-	outb(PIC_M_DATA, 0);
-	outb(PIC_S_DATA, 0);
+	//outb(PIC_M_DATA, 0);
+	//outb(PIC_S_DATA, 0);
 
     put_str(" pic_init done \n");
 }

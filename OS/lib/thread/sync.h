@@ -1,11 +1,13 @@
 #ifndef _THREAD_SYNC_H_
 #define _THREAD_SYNC_H_
 #include "list.h"
+#include "../kernel/memory.h"
 #include "thread.h"
 #include "../stdint.h"
 #include "../kernel/interrupt.h"
 #include "../kernel/print.h"
 #include "../kernel/debug.h"
+#include "../lib/stdio.h"
 struct semaphore {
 	uint8_t value;
 	struct list waiters;

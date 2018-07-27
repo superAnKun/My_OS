@@ -19,7 +19,7 @@ int bitmap_scan(struct bitmap *btmp, uint32_t cnt) {
 	    idx_byte++;
 	}
 
-	ASSERT(idx_byte < btmp->btmp_bytes_len);
+	ASSERT(idx_byte <= btmp->btmp_bytes_len);
 	if (idx_byte == btmp->btmp_bytes_len) return -1;
 
 

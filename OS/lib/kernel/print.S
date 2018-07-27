@@ -202,8 +202,6 @@ jl put_each_num
 popad
 ret
 
-
-
 setCursor:
 push edx
 push eax
@@ -232,4 +230,34 @@ pop eax
 pop edx
 ret
 
+ ;----------------------------清屏幕------------  
+ global cls_screen
+ cls_screen:
+     pushad
+ 	mov ax, SELECTOR_VIDEO
+ 	mov gs, ax
+ 
+ 	mov ebx, 0
+ 	mov ecx, 80*25
+ c:
+     mov word [gs:ebx], 0x0720
+ 	add ebx, 2
+ 	loop c
+ 	mov ebx, 0
 
+	mov dx, 0x03d4
+	mov al, 0x0e
+	out dx, al
+	mov dx, 0x03d5
+	mov al, bh
+	out dx, al
+
+	mov dx, 0x03d4
+	mov al, 0x0f
+	out dx, al
+	mov dx, 0x03d5
+	mov al, bl
+	out dx, al
+	popad
+	ret
+ ;----------------------------------------------

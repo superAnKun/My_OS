@@ -1,0 +1,98 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AS	./makefile	/^AS = nasm$/;"	m
+ASFLAGS	./makefile	/^ASFLAGS = -f elf$/;"	m
+BUILD_DIR	./makefile	/^BUILD_DIR = .$/;"	m
+CC	./makefile	/^CC = gcc$/;"	m
+CFLAGS	./makefile	/^CFLAGS = -Wall -m32 -c -fno-stack-protector -W -Wstrict-prototypes \\$/;"	m
+CFLAGS2	./makefile	/^CFLAGS2 = -m32  -c -fno-builtin$/;"	m
+DD_OUT	./makefile	/^DD_OUT=\/home\/ankun\/公共的\/OS\/hd60M.img$/;"	m
+ENTRY_POINT	./makefile	/^ENTRY_POINT = 0x8048000$/;"	m
+LD	./makefile	/^LD = ld$/;"	m
+LDFLAGS	./makefile	/^LDFLAGS = -m elf_i386 -e main -Map $(BUILD_DIR)\/kernel.map$/;"	m
+LIB	./makefile	/^LIB = -I lib\/ -I lib\/kernel\/ -I lib\/device\/ -I lib\/thread$/;"	m
+OBJS	./makefile	/^OBJS = $(BUILD_DIR)\/string.o $(BUILD_DIR)\/syscall.o $(BUILD_DIR)\/stdio.o $(BUILD_DIR)\/start.o$/;"	m
+SYSCALL_NR	./syscall.h	/^enum SYSCALL_NR {$/;"	g
+SYS_CHDIR	./syscall.h	/^	SYS_CHDIR,$/;"	e	enum:SYSCALL_NR
+SYS_CLEAR	./syscall.h	/^	SYS_CLEAR,$/;"	e	enum:SYSCALL_NR
+SYS_CLOSE	./syscall.h	/^	SYS_CLOSE,$/;"	e	enum:SYSCALL_NR
+SYS_CLOSEDIR	./syscall.h	/^	SYS_CLOSEDIR,$/;"	e	enum:SYSCALL_NR
+SYS_EXECV	./syscall.h	/^	SYS_EXECV$/;"	e	enum:SYSCALL_NR
+SYS_FORK	./syscall.h	/^	SYS_FORK,$/;"	e	enum:SYSCALL_NR
+SYS_FREE	./syscall.h	/^	SYS_FREE,$/;"	e	enum:SYSCALL_NR
+SYS_GETCWD	./syscall.h	/^	SYS_GETCWD,$/;"	e	enum:SYSCALL_NR
+SYS_GETPID	./syscall.h	/^	SYS_GETPID,$/;"	e	enum:SYSCALL_NR
+SYS_LSEEK	./syscall.h	/^	SYS_LSEEK,$/;"	e	enum:SYSCALL_NR
+SYS_MALLOC	./syscall.h	/^	SYS_MALLOC,$/;"	e	enum:SYSCALL_NR
+SYS_MKDIR	./syscall.h	/^	SYS_MKDIR,$/;"	e	enum:SYSCALL_NR
+SYS_OPEN	./syscall.h	/^	SYS_OPEN,$/;"	e	enum:SYSCALL_NR
+SYS_OPENDIR	./syscall.h	/^	SYS_OPENDIR,$/;"	e	enum:SYSCALL_NR
+SYS_PS	./syscall.h	/^	SYS_PS,$/;"	e	enum:SYSCALL_NR
+SYS_PUTCHAR	./syscall.h	/^	SYS_PUTCHAR,$/;"	e	enum:SYSCALL_NR
+SYS_READ	./syscall.h	/^	SYS_READ,$/;"	e	enum:SYSCALL_NR
+SYS_READDIR	./syscall.h	/^	SYS_READDIR,$/;"	e	enum:SYSCALL_NR
+SYS_REWINDDIR	./syscall.h	/^	SYS_REWINDDIR,$/;"	e	enum:SYSCALL_NR
+SYS_RMDIR	./syscall.h	/^	SYS_RMDIR,$/;"	e	enum:SYSCALL_NR
+SYS_STAT	./syscall.h	/^	SYS_STAT,$/;"	e	enum:SYSCALL_NR
+SYS_UNLINK	./syscall.h	/^	SYS_UNLINK,$/;"	e	enum:SYSCALL_NR
+SYS_WRITE	./syscall.h	/^	SYS_WRITE,$/;"	e	enum:SYSCALL_NR
+_STRING_H_	./string.h	2;"	d
+__STDIO_H_	./stdio.h	2;"	d
+__SYSCALL_H_	./syscall.h	2;"	d
+_start	./start.S	/^_start:$/;"	l
+_syscall0	./syscall.c	2;"	d	file:
+_syscall1	./syscall.c	8;"	d	file:
+_syscall2	./syscall.c	15;"	d	file:
+_syscall3	./syscall.c	21;"	d	file:
+chdir	./syscall.c	/^int32_t chdir(const char* path) {$/;"	f
+clear	./syscall.c	/^void clear() {$/;"	f
+close	./syscall.c	/^int32_t close(int32_t fd) {$/;"	f
+closedir	./syscall.c	/^int32_t closedir(struct dir* dir) {$/;"	f
+execv	./syscall.c	/^int32_t execv(const char* path, const char* argv[]) {$/;"	f
+extern	./start.S	/^extern main$/;"	l
+fork	./syscall.c	/^int32_t fork() {$/;"	f
+free	./syscall.c	/^void free(void* addr) {$/;"	f
+getcwd	./syscall.c	/^char* getcwd(char* buf, uint32_t size) {$/;"	f
+getpid	./syscall.c	/^uint32_t getpid() {$/;"	f
+global	./start.S	/^global _start$/;"	l
+itoa	./stdio.c	/^static void itoa(uint32_t value, char** buf_ptr_addr, uint8_t base) {$/;"	f	file:
+lseek	./syscall.c	/^int32_t lseek(int32_t fd, int32_t offset, uint8_t whence) {$/;"	f
+main	./prog_no_arg.c	/^int main(int argc, char** argv) {$/;"	f
+malloc	./syscall.c	/^void* malloc(uint32_t size) {$/;"	f
+memcmp	./string.c	/^int memcmp(const void* a_, const void* b_, uint32_t size)$/;"	f
+memcpy	./string.c	/^void memcpy(void* dst_, void* src_, uint32_t size)$/;"	f
+memset	./string.c	/^void memset(void* dst_, uint8_t value, uint32_t size)$/;"	f
+mkdir	./syscall.c	/^int32_t mkdir(const char* pathname) {$/;"	f
+open	./syscall.c	/^int32_t open(char* pathname, uint8_t flag) {$/;"	f
+opendir	./syscall.c	/^struct dir* opendir(const char* name) {$/;"	f
+printf	./stdio.c	/^int32_t printf(const char* format, ...) {$/;"	f
+ps	./syscall.c	/^void ps() {$/;"	f
+putchar	./syscall.c	/^void putchar(char char_asci) {$/;"	f
+read	./syscall.c	/^int32_t read(int32_t fd, void* buf, uint32_t count) {$/;"	f
+readdir	./syscall.c	/^struct dir_entry* readdir(struct dir* dir) {$/;"	f
+rewinddir	./syscall.c	/^void rewinddir(struct dir* adir) {$/;"	f
+rmdir	./syscall.c	/^int32_t rmdir(const char* pathname) {$/;"	f
+section	./start.S	/^section .text$/;"	l
+sprintf	./stdio.c	/^uint32_t sprintf(char *buf, const char* format, ...) {$/;"	f
+stat	./syscall.c	/^int32_t stat(const char* path, struct stat* buf) {$/;"	f
+std_d	./stdio.h	/^enum std_d {$/;"	g
+stderr_no	./stdio.h	/^	stderr_no$/;"	e	enum:std_d
+stdin_no	./stdio.h	/^	stdin_no,$/;"	e	enum:std_d
+stdout_no	./stdio.h	/^	stdout_no,$/;"	e	enum:std_d
+strcat	./string.c	/^char* strcat(char* dst_, const char* src_)$/;"	f
+strchr	./string.c	/^char* strchr(const char* str, const uint8_t ch)$/;"	f
+strchrs	./string.c	/^uint32_t strchrs(const char* str, char ch)$/;"	f
+strcmp	./string.c	/^uint8_t strcmp(const char* a, const char* b)$/;"	f
+strcpy	./string.c	/^char* strcpy(char* dst_, char* src_)$/;"	f
+strlen	./string.c	/^uint32_t strlen(const char* str)$/;"	f
+strrchr	./string.c	/^char* strrchr(const char* str, const char ch)$/;"	f
+unlink	./syscall.c	/^int32_t unlink(const char* filename) {$/;"	f
+va_arg	./stdio.h	10;"	d
+va_end	./stdio.h	11;"	d
+va_start	./stdio.h	9;"	d
+vsprintf	./stdio.c	/^uint32_t vsprintf(char* str, const char* format, va_list ap) {$/;"	f
+write	./syscall.c	/^int32_t write(int32_t fd, const void* buf, uint32_t count) {$/;"	f

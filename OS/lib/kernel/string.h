@@ -5,7 +5,7 @@
 #include "print.h"
 #include "debug.h"
 void memset(void*, uint8_t, uint32_t);
-void memecpy(void*, void*, uint32_t);
+void memcpy(void*, void*, uint32_t);
 int memcmp(const void*, const void*, uint32_t);
 char *strcpy(char*, char*);
 uint32_t strlen(const char*);
